@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Raymond Israel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #050810; --navy: #070d1f; --blue-deep: #0a1628; --blue-mid: #0f2347;
+    --accent: #1a56ff; --accent-soft: rgba(26,86,255,0.12); --accent-line: rgba(26,86,255,0.35);
+    --white: #f0f4ff; --white-dim: rgba(240,244,255,0.55); --white-ghost: rgba(240,244,255,0.12);
+    --border: rgba(240,244,255,0.08);
+    --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 68px; background: rgba(5,8,16,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.25s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--white); }
+  .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
+  .nav-cta { color: var(--accent) !important; border: 1px solid var(--accent-line); padding: 6px 18px; border-radius: 2px; font-size: 12px !important; }
+  .nav-cta:hover { background: var(--accent-soft) !important; }
+  .nav-cta::after { display: none !important; }
+
+  /* HERO */
+  .hero { min-height: 80vh; display: grid; grid-template-columns: 1fr 1fr; align-items: end; padding: 120px 4rem 5rem; gap: 5rem; position: relative; overflow: hidden; }
+  .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,86,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,255,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 80%, transparent 100%); }
+  .hero-accent-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent) 0%, transparent 60%); }
+  .hero-left { position: relative; z-index: 1; }
+  .breadcrumb { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.5s 0.1s forwards; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .hero-eyebrow { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.5s 0.2s forwards; }
+  .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 1px; background: var(--accent); }
+  .hero-headline { font-family: var(--font-display); font-size: clamp(56px, 7vw, 100px); line-height: 0.92; letter-spacing: 0.01em; color: var(--white); opacity: 0; animation: fadeUp 0.6s 0.3s forwards; }
+  .hero-headline em { color: transparent; -webkit-text-stroke: 1px rgba(26,86,255,0.5); font-style: normal; }
+  .hero-bio { font-size: 16px; font-weight: 300; color: var(--white-dim); line-height: 1.8; margin-top: 1.8rem; opacity: 0; animation: fadeUp 0.6s 0.45s forwards; }
+  .hero-bio p + p { margin-top: 1rem; }
+  .hero-location { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-ghost); margin-top: 1.5rem; display: flex; align-items: center; gap: 8px; opacity: 0; animation: fadeUp 0.6s 0.55s forwards; }
+  .location-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
+  .hero-right { position: relative; z-index: 1; opacity: 0; animation: fadeUp 0.7s 0.4s forwards; }
+  .photo-frame { width: 100%; aspect-ratio: 3/4; background: var(--blue-mid); border: 1px solid var(--border); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .photo-frame::before { content: ''; position: absolute; top: 14px; left: 14px; right: -14px; bottom: -14px; border: 1px solid var(--accent-line); z-index: -1; }
+  .photo-placeholder { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--white-ghost); text-transform: uppercase; }
+  .photo-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 1rem 1.5rem; background: rgba(5,8,16,0.7); border-top: 1px solid var(--border); }
+  .photo-caption-name { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.02em; color: var(--white); }
+  .photo-caption-title { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-top: 2px; }
+
+  /* QUICK STATS */
+  .quick-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .qs-item { background: var(--black); padding: 2rem 2.5rem; text-align: center; transition: background 0.3s; }
+  .qs-item:hover { background: var(--navy); }
+  .qs-num { font-family: var(--font-display); font-size: 52px; color: var(--white); line-height: 1; letter-spacing: 0.02em; }
+  .qs-num span { color: var(--accent); font-size: 28px; vertical-align: super; }
+  .qs-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white-dim); margin-top: 4px; }
+
+  /* DISCIPLINES */
+  .disciplines-section { padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1.6fr; gap: 6rem; align-items: start; }
+  .section-eyebrow { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .section-title { font-family: var(--font-display); font-size: 52px; line-height: 1; color: var(--white); letter-spacing: 0.01em; }
+  .section-body { font-size: 15px; font-weight: 300; color: var(--white-dim); line-height: 1.8; margin-top: 1.2rem; }
+  .disciplines-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); }
+  .discipline-card { background: var(--black); padding: 2rem; transition: background 0.3s; }
+  .discipline-card:hover { background: var(--blue-deep); }
+  .discipline-icon { font-size: 22px; margin-bottom: 10px; color: var(--accent); }
+  .discipline-name { font-family: var(--font-display); font-size: 22px; letter-spacing: 0.02em; color: var(--white); margin-bottom: 6px; }
+  .discipline-desc { font-size: 13px; font-weight: 300; color: var(--white-dim); line-height: 1.65; }
+
+  /* SKILLS */
+  .skills-section { padding: 5rem 4rem; background: var(--navy); }
+  .skills-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+  .skills-grid { display: flex; flex-direction: column; gap: 1.5rem; }
+  .skill-row { display: flex; flex-direction: column; gap: 6px; }
+  .skill-header { display: flex; align-items: center; justify-content: space-between; }
+  .skill-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); }
+  .skill-pct { font-family: var(--font-mono); font-size: 11px; color: var(--accent); }
+  .skill-track { height: 3px; background: var(--border); border-radius: 1px; overflow: hidden; }
+  .skill-fill { height: 100%; background: var(--accent); border-radius: 1px; width: 0; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); }
+
+  /* EXPERIENCE TIMELINE */
+  .experience-section { padding: 5rem 4rem; }
+  .experience-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 6rem; align-items: start; }
+  .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .timeline-item { padding-left: 2rem; padding-bottom: 2.5rem; position: relative; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-dot { position: absolute; left: -4px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--black); border: 1px solid var(--accent); transition: background 0.2s; }
+  .timeline-item:hover .timeline-dot { background: var(--accent); }
+  .timeline-date { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .timeline-role { font-family: var(--font-display); font-size: 24px; letter-spacing: 0.02em; color: var(--white); line-height: 1.1; margin-bottom: 4px; }
+  .timeline-company { font-size: 13px; font-weight: 500; color: var(--white-dim); margin-bottom: 8px; }
+  .timeline-desc { font-size: 13px; font-weight: 300; color: var(--white-ghost); line-height: 1.65; }
+
+  /* VALUES */
+  .values-section { padding: 5rem 4rem; background: var(--navy); }
+  .values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); margin-top: 3rem; }
+  .value-card { background: var(--black); padding: 2.5rem; transition: background 0.3s; }
+  .value-card:hover { background: var(--blue-deep); }
+  .value-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; }
+  .value-title { font-family: var(--font-display); font-size: 28px; letter-spacing: 0.02em; color: var(--white); margin-bottom: 0.75rem; }
+  .value-desc { font-size: 13px; font-weight: 300; color: var(--white-dim); line-height: 1.7; }
+
+  /* CTA */
+  .cta-strip { margin: 0 4rem 5rem; border: 1px solid var(--accent-line); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; background: var(--accent-soft); }
+  .cta-strip p { font-family: var(--font-display); font-size: 40px; line-height: 1; letter-spacing: 0.01em; }
+  .cta-strip span { font-size: 14px; font-weight: 300; color: var(--white-dim); display: block; margin-top: 6px; font-family: var(--font-body); }
+  .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: var(--accent); color: #fff; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; padding: 14px 28px; border-radius: 2px; transition: background 0.2s; white-space: nowrap; }
+  .btn-primary:hover { background: #1248e8; }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--white-ghost); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-ghost); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RI</a>
+  <ul class="nav-links">
+    <li><a href="index.html#specialties">Work</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-accent-line"></div>
+  <div class="hero-left">
+    <p class="breadcrumb"><a href="index.html">Home</a> / About</p>
+    <p class="hero-eyebrow">The person</p>
+    <h1 class="hero-headline">Raymond<br><em>Israel</em></h1>
+    <div class="hero-bio">
+      <p>[Placeholder: Write a 2–3 sentence intro about yourself — who you are, what drives your work, and the thread that connects your disciplines. Be confident and human.]</p>
+      <p>[Placeholder: A second paragraph about your philosophy or approach — what makes the way you work distinctive. What do clients consistently say about working with you?]</p>
+    </div>
+    <p class="hero-location"><span class="location-dot"></span>Based in [City, Country] &mdash; Available for remote &amp; on-site</p>
+  </div>
+  <div class="hero-right">
+    <div class="photo-frame">
+      <span class="photo-placeholder">[ Your Photo Here ]</span>
+      <div class="photo-caption">
+        <div class="photo-caption-name">Raymond Israel</div>
+        <div class="photo-caption-title">Multidisciplinary Creative</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quick-stats">
+  <div class="qs-item"><div class="qs-num">5<span>+</span></div><div class="qs-label">Years of Experience</div></div>
+  <div class="qs-item"><div class="qs-num">60<span>+</span></div><div class="qs-label">Projects Completed</div></div>
+  <div class="qs-item"><div class="qs-num">30<span>+</span></div><div class="qs-label">Clients Worked With</div></div>
+  <div class="qs-item"><div class="qs-num">8<span>+</span></div><div class="qs-label">Industries Served</div></div>
+</div>
+
+<section class="disciplines-section">
+  <div>
+    <p class="section-eyebrow">What I do</p>
+    <h2 class="section-title">Four disciplines,<br>one vision</h2>
+    <p class="section-body">I don't pick a lane. The best creative work lives at the intersection of strategy, design, and communication — and that's exactly where I operate.</p>
+  </div>
+  <div class="disciplines-grid">
+    <div class="discipline-card"><div class="discipline-icon">◈</div><div class="discipline-name">Branding &amp; Digital Design</div><div class="discipline-desc">Visual systems that communicate who a brand is — before a single word is read.</div></div>
+    <div class="discipline-card"><div class="discipline-icon">◈</div><div class="discipline-name">Website Development</div><div class="discipline-desc">Purposeful, performant websites built end-to-end from wireframe to launch.</div></div>
+    <div class="discipline-card"><div class="discipline-icon">◈</div><div class="discipline-name">Content Strategy</div><div class="discipline-desc">Story-led frameworks that turn brand values into content people actually want.</div></div>
+    <div class="discipline-card"><div class="discipline-icon">◈</div><div class="discipline-name">Social Media Management</div><div class="discipline-desc">Growth strategies and creative content that builds real communities online.</div></div>
+  </div>
+</section>
+
+<section class="skills-section">
+  <div class="skills-inner">
+    <div>
+      <p class="section-eyebrow">Expertise</p>
+      <h2 class="section-title">Skills &amp;<br>tools</h2>
+      <p class="section-body">A cross-disciplinary toolkit built over years of real client work.</p>
+    </div>
+    <div class="skills-grid" id="skills-grid">
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Brand Identity</span><span class="skill-pct">95%</span></div><div class="skill-track"><div class="skill-fill" data-w="95"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">UI / UX Design</span><span class="skill-pct">88%</span></div><div class="skill-track"><div class="skill-fill" data-w="88"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Web Development</span><span class="skill-pct">82%</span></div><div class="skill-track"><div class="skill-fill" data-w="82"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Webflow / Framer</span><span class="skill-pct">90%</span></div><div class="skill-track"><div class="skill-fill" data-w="90"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Content Strategy</span><span class="skill-pct">87%</span></div><div class="skill-track"><div class="skill-fill" data-w="87"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Copywriting</span><span class="skill-pct">85%</span></div><div class="skill-track"><div class="skill-fill" data-w="85"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Social Media Strategy</span><span class="skill-pct">92%</span></div><div class="skill-track"><div class="skill-fill" data-w="92"></div></div></div>
+      <div class="skill-row"><div class="skill-header"><span class="skill-name">Figma / Adobe Suite</span><span class="skill-pct">93%</span></div><div class="skill-track"><div class="skill-fill" data-w="93"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="experience-section">
+  <div class="experience-inner">
+    <div>
+      <p class="section-eyebrow">Journey</p>
+      <h2 class="section-title">Experience &amp;<br>background</h2>
+      <p class="section-body">A track record built across agencies, startups, and independent practice.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">[Year] — Present</div>
+        <div class="timeline-role">Freelance Multidisciplinary Creative</div>
+        <div class="timeline-company">Independent Practice</div>
+        <div class="timeline-desc">[Placeholder: Describe your freelance work — types of clients, recurring engagements, notable outcomes.]</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">[Year] — [Year]</div>
+        <div class="timeline-role">[Job Title]</div>
+        <div class="timeline-company">[Company / Agency Name]</div>
+        <div class="timeline-desc">[Placeholder: Describe your role, responsibilities, and what you achieved here.]</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">[Year] — [Year]</div>
+        <div class="timeline-role">[Job Title]</div>
+        <div class="timeline-company">[Company / Agency Name]</div>
+        <div class="timeline-desc">[Placeholder: Describe your role, responsibilities, and what you achieved here.]</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">[Year]</div>
+        <div class="timeline-role">[Degree / Certification]</div>
+        <div class="timeline-company">[Institution Name]</div>
+        <div class="timeline-desc">[Placeholder: Brief note on your academic background or key certifications.]</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="values-section">
+  <div>
+    <p class="section-eyebrow">How I work</p>
+    <h2 class="section-title">Principles</h2>
+  </div>
+  <div class="values-grid">
+    <div class="value-card"><div class="value-num">01</div><div class="value-title">Intention over decoration</div><div class="value-desc">Every design decision has a reason. Aesthetics serve strategy — not the other way around.</div></div>
+    <div class="value-card"><div class="value-num">02</div><div class="value-title">Clarity in everything</div><div class="value-desc">Great creative work is understood immediately. Complexity is a failure of communication, not a sign of effort.</div></div>
+    <div class="value-card"><div class="value-num">03</div><div class="value-title">Built to last</div><div class="value-desc">I build systems and strategies that outlive the project — brands, content, and platforms that keep working.</div></div>
+  </div>
+</section>
+
+<div class="cta-strip">
+  <div><p>Let's work together</p><span>Open to freelance, full-time &amp; consultancy opportunities.</span></div>
+  <a href="contact.html" class="btn-primary">Get in Touch →</a>
+</div>
+
+<footer>
+  <p class="footer-copy">© 2025 Raymond Israel</p>
+  <ul class="footer-links">
+    <li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="#">Instagram</a></li><li><a href="#">Twitter / X</a></li>
+  </ul>
+</footer>
+
+<script>
+  const fills = document.querySelectorAll('.skill-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        fills.forEach(f => { f.style.width = f.dataset.w + '%'; });
+        observer.disconnect();
+      }
+    });
+  }, { threshold: 0.3 });
+  const grid = document.getElementById('skills-grid');
+  if (grid) observer.observe(grid);
+</script>
+</body>
+</html>
