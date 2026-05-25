@@ -129,14 +129,20 @@
 .carousel-track {
   display: flex;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: 100%;
+  overflow: hidden;
 }
 .testimonial-slide {
   min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: var(--black);
   border: 1px solid var(--border);
   padding: 2.5rem;
   position: relative;
   flex-shrink: 0;
+  overflow: hidden;
 }
 .testimonial-quote {
   font-family: var(--font-display);
@@ -154,6 +160,9 @@
   line-height: 1.8;
   margin-bottom: 2rem;
   font-style: italic;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 .testimonial-author {
   display: flex;
