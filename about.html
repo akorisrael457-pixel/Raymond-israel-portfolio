@@ -112,18 +112,14 @@
 }
 
 /* TESTIMONIALS */
-.testimonials-section {
+ .testimonials-section {
   padding: 5rem 4rem;
   background: var(--navy);
   overflow: hidden;
 }
-.testimonials-inner {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 6rem;
-  align-items: start;
+.testimonials-header-top {
+  margin-bottom: 3rem;
 }
-.testimonials-header { }
 .carousel-wrap {
   display: flex;
   flex-direction: column;
@@ -415,65 +411,62 @@
     </div>
   </div>
 </section>
-
 <!-- TESTIMONIALS -->
 <section class="testimonials-section">
-  <div class="testimonials-inner">
-    <div class="testimonials-header">
-      <p class="section-eyebrow">Kind words</p>
-      <h2 class="section-title">What clients say</h2>
+  <div class="testimonials-header-top">
+    <p class="section-eyebrow">Kind words</p>
+    <h2 class="section-title">What clients say</h2>
+  </div>
+
+  <div class="carousel-wrap">
+    <div class="carousel-track" id="carousel-track">
+
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">&#8220;</div>
+        <p class="testimonial-text">[Placeholder: Paste your first client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">[IN]</div>
+          <div class="author-info">
+            <div class="author-name">[Client Full Name]</div>
+            <div class="author-role">[Job Title, Company Name]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">&#8220;</div>
+        <p class="testimonial-text">[Placeholder: Paste your second client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">[IN]</div>
+          <div class="author-info">
+            <div class="author-name">[Client Full Name]</div>
+            <div class="author-role">[Job Title, Company Name]</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">&#8220;</div>
+        <p class="testimonial-text">[Placeholder: Paste your third client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">[IN]</div>
+          <div class="author-info">
+            <div class="author-name">[Client Full Name]</div>
+            <div class="author-role">[Job Title, Company Name]</div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="carousel-wrap">
-      <div class="carousel-track" id="carousel-track">
-
-        <div class="testimonial-slide">
-          <div class="testimonial-quote">&#8220;</div>
-          <p class="testimonial-text">[Placeholder: Paste your client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">[Initials]</div>
-            <div class="author-info">
-              <div class="author-name">[Client Full Name]</div>
-              <div class="author-role">[Job Title, Company Name]</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide">
-          <div class="testimonial-quote">&#8220;</div>
-          <p class="testimonial-text">[Placeholder: Paste your second client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">[Initials]</div>
-            <div class="author-info">
-              <div class="author-name">[Client Full Name]</div>
-              <div class="author-role">[Job Title, Company Name]</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testimonial-slide">
-          <div class="testimonial-quote">&#8220;</div>
-          <p class="testimonial-text">[Placeholder: Paste your third client testimonial here. Keep it 2–3 sentences — specific results or experiences work best.]</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">[Initials]</div>
-            <div class="author-info">
-              <div class="author-name">[Client Full Name]</div>
-              <div class="author-role">[Job Title, Company Name]</div>
-            </div>
-          </div>
-        </div>
-
+    <div class="carousel-controls">
+      <button class="carousel-btn" onclick="moveCarousel(-1)">&#8592;</button>
+      <div class="carousel-dots" id="carousel-dots">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
       </div>
-
-      <div class="carousel-controls">
-        <button class="carousel-btn" id="prev-btn" onclick="moveCarousel(-1)">&#8592;</button>
-        <div class="carousel-dots" id="carousel-dots">
-          <span class="dot active" onclick="goToSlide(0)"></span>
-          <span class="dot" onclick="goToSlide(1)"></span>
-          <span class="dot" onclick="goToSlide(2)"></span>
-        </div>
-        <button class="carousel-btn" id="next-btn" onclick="moveCarousel(1)">&#8594;</button>
-      </div>
+      <button class="carousel-btn" onclick="moveCarousel(1)">&#8594;</button>
     </div>
   </div>
 </section>
