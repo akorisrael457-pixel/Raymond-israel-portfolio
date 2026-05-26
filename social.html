@@ -52,10 +52,8 @@
   .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
   .project-card { background: var(--black); overflow: hidden; display: block; text-decoration: none; transition: background 0.3s; position: relative; }
   .project-card:hover { background: var(--blue-deep); }
-  .project-card.featured { grid-column: span 2; }
   .project-card.featured .project-title { font-size: 34px; }
   .project-thumb { width: 100%; aspect-ratio: 4/3; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 1.5rem; }
-  .project-card.featured .project-thumb { aspect-ratio: 16/7; }
   .social-mock { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; width: 85%; }
   .social-mock-post { aspect-ratio: 1; background: var(--blue-mid); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
   .social-mock-post.accent { background: var(--accent-soft); border-color: var(--accent-line); }
@@ -87,12 +85,112 @@
   .footer-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-ghost); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--accent); }
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+ /* CERTIFICATIONS */
+.cert-section {
+  padding: 5rem 4rem;
+  background: var(--navy);
+}
+.cert-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.cert-header {
+  max-width: 480px;
+}
+.cert-sub {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.7;
+  margin-top: 0.75rem;
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+}
+.cert-card {
+  background: var(--black);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transition: background 0.3s;
+  position: relative;
+}
+.cert-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 3px;
+  background: var(--accent);
+  transition: width 0.35s ease;
+}
+.cert-card:hover { background: var(--blue-deep); }
+.cert-card:hover::before { width: 100%; }
+.cert-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.cert-icon {
+  font-size: 20px;
+  color: var(--accent);
+}
+.cert-year {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white-ghost);
+}
+.cert-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: var(--white);
+  line-height: 1.1;
+}
+.cert-issuer {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.cert-desc {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--white-dim);
+  line-height: 1.65;
+  margin-top: 0.25rem;
+}
+.cert-tag {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 2px;
+  align-self: flex-start;
+  margin-top: 0.5rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cert-card:hover .cert-tag {
+  border-color: var(--accent-line);
+  color: var(--white);
+}
 </style>
 </head>
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">RI</a>
+  <a href="index.html" class="nav-logo">RAYMOND ISRAEL</a>
   <ul class="nav-links">
     <li><a href="branding.html">Branding</a></li>
     <li><a href="webdev.html">Web Dev</a></li>
@@ -139,36 +237,125 @@
 
 <section class="projects-section">
   <div class="projects-grid">
-    <a href="#" class="project-card featured">
-      <div class="project-thumb">
-        <div class="social-mock"><div class="social-mock-post accent"><span class="social-mock-post-num">01</span></div><div class="social-mock-post"><span class="social-mock-post-num">02</span></div><div class="social-mock-post"><span class="social-mock-post-num">03</span></div><div class="social-mock-post"><span class="social-mock-post-num">04</span></div><div class="social-mock-post accent"><span class="social-mock-post-num">05</span></div><div class="social-mock-post"><span class="social-mock-post-num">06</span></div></div>
-        <span class="project-thumb-label">Featured</span>
-        <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="social-mock">
+        <div class="social-mock-post accent"><span class="social-mock-post-num">01</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">02</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">03</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">04</span></div>
+        <div class="social-mock-post accent"><span class="social-mock-post-num">05</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">06</span></div>
       </div>
-      <div class="project-info"><h2 class="project-title">[Client / Account Name]</h2><p class="project-desc">[Placeholder: Describe what you managed, what platform, and the results — follower growth %, engagement rate lift, reach numbers, campaign performance, etc.]</p><div class="project-tags"><span class="project-tag">Instagram</span><span class="project-tag">Growth Strategy</span><span class="project-tag">Content Creation</span><span class="project-tag">Analytics</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb">
-        <div class="analytics-mock"><div class="analytics-bar-row"><span class="analytics-label">Reach</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:82%"></div></div><span class="analytics-val">+82%</span></div><div class="analytics-bar-row"><span class="analytics-label">Engage</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:64%"></div></div><span class="analytics-val">+64%</span></div><div class="analytics-bar-row"><span class="analytics-label">Followers</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:45%"></div></div><span class="analytics-val">+45%</span></div><div class="analytics-bar-row"><span class="analytics-label">Clicks</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:73%"></div></div><span class="analytics-val">+73%</span></div></div>
-        <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Client / Account Name]</h2>
+      <p class="project-desc">[Placeholder: Describe what you managed, what platform, and the results.]</p>
+      <div class="project-tags">
+        <span class="project-tag">Instagram</span>
+        <span class="project-tag">Growth Strategy</span>
+        <span class="project-tag">Content Creation</span>
+        <span class="project-tag">Analytics</span>
       </div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Growth campaign — platform, goals, and key metrics achieved.]</p><div class="project-tags"><span class="project-tag">LinkedIn</span><span class="project-tag">Growth</span><span class="project-tag">Analytics</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="social-mock" style="width:75%;"><div class="social-mock-post"><span class="social-mock-post-num">01</span></div><div class="social-mock-post accent"><span class="social-mock-post-num">02</span></div><div class="social-mock-post"><span class="social-mock-post-num">03</span></div><div class="social-mock-post accent"><span class="social-mock-post-num">04</span></div><div class="social-mock-post"><span class="social-mock-post-num">05</span></div><div class="social-mock-post"><span class="social-mock-post-num">06</span></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Brief description of campaign or account managed.]</p><div class="project-tags"><span class="project-tag">TikTok</span><span class="project-tag">Campaign</span><span class="project-tag">Viral Content</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="analytics-mock"><div class="analytics-bar-row"><span class="analytics-label">Impressions</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:90%"></div></div><span class="analytics-val">+90%</span></div><div class="analytics-bar-row"><span class="analytics-label">Saves</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:55%"></div></div><span class="analytics-val">+55%</span></div><div class="analytics-bar-row"><span class="analytics-label">DMs</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:38%"></div></div><span class="analytics-val">+38%</span></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Community management or content strategy project.]</p><div class="project-tags"><span class="project-tag">Community</span><span class="project-tag">Instagram</span><span class="project-tag">Strategy</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="social-mock" style="width:75%;"><div class="social-mock-post accent"><span class="social-mock-post-num">01</span></div><div class="social-mock-post"><span class="social-mock-post-num">02</span></div><div class="social-mock-post accent"><span class="social-mock-post-num">03</span></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Content creation, scheduling, or paid social.]</p><div class="project-tags"><span class="project-tag">Facebook</span><span class="project-tag">Paid Social</span><span class="project-tag">Content</span></div></div>
-    </a>
-  </div>
+    </div>
+  </a>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="analytics-mock">
+        <div class="analytics-bar-row"><span class="analytics-label">Reach</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:82%"></div></div><span class="analytics-val">+82%</span></div>
+        <div class="analytics-bar-row"><span class="analytics-label">Engage</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:64%"></div></div><span class="analytics-val">+64%</span></div>
+        <div class="analytics-bar-row"><span class="analytics-label">Followers</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:45%"></div></div><span class="analytics-val">+45%</span></div>
+        <div class="analytics-bar-row"><span class="analytics-label">Clicks</span><div class="analytics-bar-bg"><div class="analytics-bar-fill" style="width:73%"></div></div><span class="analytics-val">+73%</span></div>
+      </div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Client / Account Name]</h2>
+      <p class="project-desc">[Placeholder: Describe what you managed, what platform, and the results.]</p>
+      <div class="project-tags">
+        <span class="project-tag">LinkedIn</span>
+        <span class="project-tag">Growth</span>
+        <span class="project-tag">Analytics</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="social-mock">
+        <div class="social-mock-post"><span class="social-mock-post-num">01</span></div>
+        <div class="social-mock-post accent"><span class="social-mock-post-num">02</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">03</span></div>
+        <div class="social-mock-post accent"><span class="social-mock-post-num">04</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">05</span></div>
+        <div class="social-mock-post"><span class="social-mock-post-num">06</span></div>
+      </div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Client / Account Name]</h2>
+      <p class="project-desc">[Placeholder: Describe what you managed, what platform, and the results.]</p>
+      <div class="project-tags">
+        <span class="project-tag">TikTok</span>
+        <span class="project-tag">Campaign</span>
+        <span class="project-tag">Viral Content</span>
+      </div>
+    </div>
+  </a>
+
+</div>
 </section>
 
+<!-- CERTIFICATIONS -->
+<section class="cert-section">
+  <div class="cert-inner">
+    <div class="cert-header">
+      <p class="section-eyebrow">Credentials</p>
+      <h2 class="section-title">Certifications &amp;<br>Training</h2>
+      <p class="cert-sub">Verified expertise in social media strategy and management.</p>
+    </div>
+    <div class="cert-grid">
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-icon">◈</div>
+          <div class="cert-year">[Year]</div>
+        </div>
+        <div class="cert-name">[Certification Name]</div>
+        <div class="cert-issuer">[Issuing Organisation — e.g. Meta, HubSpot, Google]</div>
+        <div class="cert-desc">[Placeholder: One line about what this covers — e.g. "Advanced social media advertising across Meta platforms."]</div>
+        <div class="cert-tag">[e.g. Meta · Social Ads]</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-icon">◈</div>
+          <div class="cert-year">[Year]</div>
+        </div>
+        <div class="cert-name">[Certification Name]</div>
+        <div class="cert-issuer">[Issuing Organisation]</div>
+        <div class="cert-desc">[Placeholder: One line about what this covers.]</div>
+        <div class="cert-tag">[e.g. HubSpot · Content]</div>
+      </div>
+
+      <div class="cert-card">
+        <div class="cert-card-top">
+          <div class="cert-icon">◈</div>
+          <div class="cert-year">[Year]</div>
+        </div>
+        <div class="cert-name">[Certification Name]</div>
+        <div class="cert-issuer">[Issuing Organisation]</div>
+        <div class="cert-desc">[Placeholder: One line about what this covers.]</div>
+        <div class="cert-tag">[e.g. Google · Analytics]</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+ 
 <div class="cta-strip">
   <div><p>Want a social presence that actually grows?</p><span>Strategy, content &amp; management — all in one.</span></div>
   <a href="contact.html" class="btn-primary">Start a Project →</a>
