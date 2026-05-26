@@ -52,10 +52,8 @@
   .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
   .project-card { background: var(--black); overflow: hidden; display: block; text-decoration: none; transition: background 0.3s; position: relative; }
   .project-card:hover { background: var(--blue-deep); }
-  .project-card.featured { grid-column: span 2; }
   .project-card.featured .project-title { font-size: 34px; }
   .project-thumb { width: 100%; aspect-ratio: 4/3; background: var(--navy); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding: 1.5rem; }
-  .project-card.featured .project-thumb { aspect-ratio: 16/7; }
   .content-preview { width: 80%; padding: 1.5rem; }
   .content-preview-title { font-family: var(--font-display); font-size: 18px; color: var(--white-dim); margin-bottom: 8px; letter-spacing: 0.02em; }
   .content-preview-line { height: 6px; background: var(--border); border-radius: 2px; margin-bottom: 5px; }
@@ -89,7 +87,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">RI</a>
+  <a href="index.html" class="nav-logo">RAYMOND ISRAEL</a>
   <ul class="nav-links">
     <li><a href="branding.html">Branding</a></li>
     <li><a href="webdev.html">Web Dev</a></li>
@@ -132,31 +130,76 @@
 
 <section class="projects-section">
   <div class="projects-grid">
-    <a href="#" class="project-card featured">
-      <div class="project-thumb">
-        <div class="content-preview"><div class="content-preview-title">[ Content Preview ]</div><div class="content-preview-accent"></div><div class="content-preview-line full"></div><div class="content-preview-line medium"></div><div class="content-preview-line full"></div><div class="content-preview-line short"></div></div>
-        <span class="project-thumb-label">Featured</span>
-        <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="content-preview">
+        <div class="content-preview-title">[ Content Preview ]</div>
+        <div class="content-preview-accent"></div>
+        <div class="content-preview-line full"></div>
+        <div class="content-preview-line medium"></div>
+        <div class="content-preview-line full"></div>
+        <div class="content-preview-line short"></div>
       </div>
-      <div class="project-info"><h2 class="project-title">[Client / Campaign Name]</h2><p class="project-desc">[Placeholder: Describe the content challenge, your strategic approach, and the results — impressions, traffic lift, conversions, etc.]</p><div class="project-tags"><span class="project-tag">Content Strategy</span><span class="project-tag">Copywriting</span><span class="project-tag">SEO</span><span class="project-tag">Brand Voice</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="content-preview"><div class="content-preview-title">[ Content Preview ]</div><div class="content-preview-accent"></div><div class="content-preview-line full"></div><div class="content-preview-line medium"></div><div class="content-preview-line short"></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p><div class="project-tags"><span class="project-tag">Editorial Plan</span><span class="project-tag">Blog</span><span class="project-tag">SEO</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="content-preview"><div class="content-preview-title">[ Content Preview ]</div><div class="content-preview-accent"></div><div class="content-preview-line full"></div><div class="content-preview-line short"></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p><div class="project-tags"><span class="project-tag">Brand Voice</span><span class="project-tag">Tone Guide</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="content-preview"><div class="content-preview-title">[ Content Preview ]</div><div class="content-preview-accent"></div><div class="content-preview-line medium"></div><div class="content-preview-line full"></div><div class="content-preview-line short"></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p><div class="project-tags"><span class="project-tag">Campaign</span><span class="project-tag">Ad Copy</span><span class="project-tag">Email</span></div></div>
-    </a>
-    <a href="#" class="project-card">
-      <div class="project-thumb"><div class="content-preview"><div class="content-preview-title">[ Content Preview ]</div><div class="content-preview-accent"></div><div class="content-preview-line full"></div><div class="content-preview-line medium"></div></div><div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div></div>
-      <div class="project-info"><h2 class="project-title">[Project Name]</h2><p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p><div class="project-tags"><span class="project-tag">Web Copy</span><span class="project-tag">UX Writing</span></div></div>
-    </a>
-  </div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Client / Campaign Name]</h2>
+      <p class="project-desc">[Placeholder: Describe the content challenge, your strategic approach, and the results — impressions, traffic lift, conversions, etc.]</p>
+      <div class="project-tags">
+        <span class="project-tag">Content Strategy</span>
+        <span class="project-tag">Copywriting</span>
+        <span class="project-tag">SEO</span>
+        <span class="project-tag">Brand Voice</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="content-preview">
+        <div class="content-preview-title">[ Content Preview ]</div>
+        <div class="content-preview-accent"></div>
+        <div class="content-preview-line full"></div>
+        <div class="content-preview-line medium"></div>
+        <div class="content-preview-line short"></div>
+      </div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Project Name]</h2>
+      <p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p>
+      <div class="project-tags">
+        <span class="project-tag">Editorial Plan</span>
+        <span class="project-tag">Blog</span>
+        <span class="project-tag">SEO</span>
+      </div>
+    </div>
+  </a>
+
+  <a href="#" class="project-card">
+    <div class="project-thumb">
+      <div class="content-preview">
+        <div class="content-preview-title">[ Content Preview ]</div>
+        <div class="content-preview-accent"></div>
+        <div class="content-preview-line full"></div>
+        <div class="content-preview-line medium"></div>
+        <div class="content-preview-line short"></div>
+      </div>
+      <div class="thumb-overlay"><span class="thumb-overlay-icon">↗</span></div>
+    </div>
+    <div class="project-info">
+      <h2 class="project-title">[Project Name]</h2>
+      <p class="project-desc">[Placeholder: Brief description of content type and outcomes.]</p>
+      <div class="project-tags">
+        <span class="project-tag">Brand Voice</span>
+        <span class="project-tag">Tone Guide</span>
+        <span class="project-tag">Campaign</span>
+      </div>
+    </div>
+  </a>
+
+</div>
 </section>
 
 <div class="cta-strip">
