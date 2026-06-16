@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>[Project Name] — Raymond Israel</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #050810; --navy: #070d1f; --blue-deep: #0a1628; --blue-mid: #0f2347;
+    --accent: #1a56ff; --accent-soft: rgba(26,86,255,0.12); --accent-line: rgba(26,86,255,0.35);
+    --white: #f0f4ff; --white-dim: rgba(240,244,255,0.55); --white-ghost: rgba(240,244,255,0.12);
+    --border: rgba(240,244,255,0.08);
+    --font-display: 'Bebas Neue', sans-serif; --font-body: 'DM Sans', sans-serif; --font-mono: 'DM Mono', monospace;
+  }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--white); font-family: var(--font-body); font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 0 4rem; height: 68px; background: rgba(5,8,16,0.88); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .nav-logo { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white-dim); text-decoration: none; transition: color 0.2s; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--accent); transition: width 0.25s; }
+  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { color: var(--accent) !important; border: 1px solid var(--accent-line); padding: 6px 18px; border-radius: 2px; font-size: 12px !important; }
+  .nav-cta:hover { background: var(--accent-soft) !important; }
+  .nav-cta::after { display: none !important; }
+
+  .case-hero { padding: 140px 4rem 4rem; position: relative; overflow: hidden; }
+  .hero-bg-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,86,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,255,0.04) 1px, transparent 1px); background-size: 60px 60px; mask-image: linear-gradient(to bottom, transparent 0%, black 30%, black 80%, transparent 100%); }
+  .hero-accent-line { position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent) 0%, transparent 60%); }
+  .breadcrumb { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-ghost); margin-bottom: 1.5rem; position: relative; z-index: 1; }
+  .breadcrumb a { color: var(--accent); text-decoration: none; }
+  .case-title { font-family: var(--font-display); font-size: clamp(50px, 7vw, 90px); line-height: 0.95; letter-spacing: 0.01em; color: var(--white); max-width: 800px; position: relative; z-index: 1; }
+  .case-tagline { font-size: 17px; font-weight: 300; color: var(--white-dim); max-width: 560px; margin-top: 1.5rem; line-height: 1.75; position: relative; z-index: 1; }
+
+  .case-meta-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .meta-item { background: var(--black); padding: 1.75rem 2rem; }
+  .meta-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .meta-value { font-size: 14px; font-weight: 400; color: var(--white); }
+
+  .cover-image-wrap { padding: 4rem; }
+  .cover-image { width: 100%; aspect-ratio: 16/9; background: var(--blue-mid); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .cover-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .img-placeholder { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; color: var(--white-ghost); text-transform: uppercase; }
+
+  .case-section { padding: 3rem 4rem; display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; }
+  .case-section-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+  .case-section-title { font-family: var(--font-display); font-size: 36px; letter-spacing: 0.01em; color: var(--white); margin-top: 8px; }
+  .case-section-body { font-size: 15px; font-weight: 300; color: var(--white-dim); line-height: 1.85; }
+  .case-section-body p + p { margin-top: 1rem; }
+
+  .process-steps { display: flex; flex-direction: column; gap: 0; margin-top: 1rem; }
+  .process-step { display: flex; gap: 1.5rem; padding: 1.5rem 0; border-bottom: 1px solid var(--border); }
+  .process-step:last-child { border-bottom: none; }
+  .process-num { font-family: var(--font-display); font-size: 32px; color: var(--accent); opacity: 0.5; line-height: 1; flex-shrink: 0; width: 50px; }
+  .process-text-title { font-family: var(--font-display); font-size: 20px; letter-spacing: 0.02em; color: var(--white); margin-bottom: 4px; }
+  .process-text-desc { font-size: 14px; font-weight: 300; color: var(--white-dim); line-height: 1.7; }
+
+  .gallery-section { padding: 4rem; }
+  .gallery-header { margin-bottom: 2.5rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); }
+  .gallery-item { aspect-ratio: 4/3; background: var(--blue-mid); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+  .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .gallery-item.wide { grid-column: span 2; aspect-ratio: 8/3; }
+
+  .results-section { padding: 4rem; background: var(--navy); }
+  .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 2.5rem; }
+  .result-item { background: var(--black); padding: 2rem; text-align: center; }
+  .result-num { font-family: var(--font-display); font-size: 48px; color: var(--white); line-height: 1; }
+  .result-num span { color: var(--accent); }
+  .result-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white-dim); margin-top: 6px; }
+
+  .next-project { margin: 0 4rem 5rem; border: 1px solid var(--accent-line); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; gap: 3rem; background: rgba(26,86,255,0.05); text-decoration: none; }
+  .next-project-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .next-project-title { font-family: var(--font-display); font-size: 36px; color: var(--white); letter-spacing: 0.01em; }
+  .next-arrow { font-size: 28px; color: var(--white-dim); transition: transform 0.2s, color 0.2s; }
+  .next-project:hover .next-arrow { transform: translateX(6px); color: var(--accent); }
+
+  footer { border-top: 1px solid var(--border); padding: 2rem 4rem; display: flex; align-items: center; justify-content: space-between; }
+  .footer-copy { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; color: var(--white-ghost); text-transform: uppercase; }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white-ghost); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">RI</a>
+  <ul class="nav-links">
+    <li><a href="branding.html">Branding</a></li>
+    <li><a href="webdev.html">Web Dev</a></li>
+    <li><a href="content.html">Content</a></li>
+    <li><a href="social.html">Social</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="case-hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-accent-line"></div>
+  <p class="breadcrumb"><a href="index.html">Home</a> / <a href="branding.html">Branding</a> / [Project Name]</p>
+  <h1 class="case-title">[Project / Client Name]</h1>
+  <p class="case-tagline">[Placeholder: A one-line summary of the project — what it was and what made it interesting or challenging.]</p>
+</section>
+
+<div class="case-meta-bar">
+  <div class="meta-item"><div class="meta-label">Client</div><div class="meta-value">[Client Name]</div></div>
+  <div class="meta-item"><div class="meta-label">Industry</div><div class="meta-value">[Industry]</div></div>
+  <div class="meta-item"><div class="meta-label">Services</div><div class="meta-value">[e.g. Identity, Logo, Style Guide]</div></div>
+  <div class="meta-item"><div class="meta-label">Year</div><div class="meta-value">[Year]</div></div>
+</div>
+
+<div class="cover-image-wrap">
+  <div class="cover-image">
+    <span class="img-placeholder">[ Cover Image — paste your image URL in the src attribute ]</span>
+  </div>
+</div>
+
+<section class="case-section">
+  <div>
+    <p class="case-section-label">The Challenge</p>
+    <h2 class="case-section-title">Where it started</h2>
+  </div>
+  <div class="case-section-body">
+    <p>[Placeholder: Describe the client's situation before you got involved. What problem were they facing?]</p>
+    <p>[Placeholder: Add a second paragraph if needed — more context on goals, constraints, or what success needed to look like.]</p>
+  </div>
+</section>
+
+<section class="case-section">
+  <div>
+    <p class="case-section-label">The Approach</p>
+    <h2 class="case-section-title">How I solved it</h2>
+  </div>
+  <div>
+    <div class="case-section-body">
+      <p>[Placeholder: Describe your overall strategic approach before diving into the steps below.]</p>
+    </div>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="process-num">01</div>
+        <div>
+          <div class="process-text-title">[Step Name — e.g. Discovery & Research]</div>
+          <div class="process-text-desc">[Placeholder: What you did in this phase and why it mattered.]</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">02</div>
+        <div>
+          <div class="process-text-title">[Step Name — e.g. Concept Development]</div>
+          <div class="process-text-desc">[Placeholder: What you did in this phase and why it mattered.]</div>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="process-num">03</div>
+        <div>
+          <div class="process-text-title">[Step Name — e.g. Final Design & Delivery]</div>
+          <div class="process-text-desc">[Placeholder: What you did in this phase and why it mattered.]</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery-section">
+  <div class="gallery-header">
+    <p class="case-section-label">The Work</p>
+    <h2 class="case-section-title">Visual gallery</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="gallery-item wide"><span class="img-placeholder">[ Image 1 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 2 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 3 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 4 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 5 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 6 ]</span></div>
+    <div class="gallery-item wide"><span class="img-placeholder">[ Image 7 ]</span></div>
+    <div class="gallery-item"><span class="img-placeholder">[ Image 8 ]</span></div>
+  </div>
+</section>
+
+<section class="results-section">
+  <p class="case-section-label">The Outcome</p>
+  <h2 class="case-section-title">Results</h2>
+  <div class="results-grid">
+    <div class="result-item"><div class="result-num">[X]<span>%</span></div><div class="result-label">[Metric — e.g. Brand Recognition]</div></div>
+    <div class="result-item"><div class="result-num">[X]<span>%</span></div><div class="result-label">[Metric]</div></div>
+    <div class="result-item"><div class="result-num">[X]<span>+</span></div><div class="result-label">[Metric]</div></div>
+    <div class="result-item"><div class="result-num">[X]<span>+</span></div><div class="result-label">[Metric]</div></div>
+  </div>
+</section>
+
+<a href="branding-project-1.html" class="next-project">
+  <div>
+    <div class="next-project-label">Next Project</div>
+    <div class="next-project-title">[Next Project Name]</div>
+  </div>
+  <span class="next-arrow">→</span>
+</a>
+
+<footer>
+  <p class="footer-copy">© 2025 Raymond Israel</p>
+  <ul class="footer-links"><li><a href="#">LinkedIn</a></li><li><a href="#">Behance</a></li><li><a href="#">Instagram</a></li></ul>
+</footer>
+
+</body>
+</html>
